@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mechanics list{% endblock %}
+
+{% block body %}
+
+    <h1>Mechanics in Library</h1>
+
+List:
+    <ul>
+    {% for mech in mechanics %}
+    <li>{{mech.name}} {{mech.surname}}
+    <a href="{{path('mechanics_edit',{id: mech.id}) }}"> EDIT </a>
+    <form action="{{path('mechanics_delete',{id: mech.id}) }}" method="POST">  
+    <button type="sumbit"> DELETE </button>
+    </form> 
+
+    </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Mechanics!{% endblock %}
+
+{% block body %}
+
+
+    <h1>Edit Mechanics✅</h1>
+
+    <form action="{{path('mechanics_update' ,{id: mech.id}) }}" method="POST">
+
+    Name: <input type="text" name="mech_name" value="{{mech.name}}"> </input>
+    Surame: <input type="text" name="mech_surname" value="{{mech.surname}}"> </input>
+
+    <button type="sumbit">Edit Mechanic</button>
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Trucks!{% endblock %}
+
+{% block body %}
+
+
+    <h1>Edit Trucks ✅</h1>
+
+    <form action="{{path('trucks_update',{id: truck.id})}}" method="POST">
+
+    Maker: <input type="text" name="truck_maker" value="{{truck.maker}}"> </input>
+    Plate: <input type="text" name="truck_plate" value="{{truck.plate}}"> </input>
+    Make year: <input type="text" name="truck_year" value="{{truck.makeYear}}"> </input>
+    Mechanic Notice: <textarea name="truck_notice" value="{{truck.mechanicNotices}}"></textarea>
+    Mechanic id: 
+    <select name="truck_mechanic_id"> 
+     {% for mech in mechanics %} 
+     <option value="{{mech.id}}" {% if mech.id == truck.mechanicId %} selected {% endif %}> 
+     {{mech.name}} {{mech.surname}} </option>
+     
+     {% endfor %}
+    </select>
+  
+    <button type="sumbit">Edit trucks</button>
+    </form>
+
+
+{% endblock %}
