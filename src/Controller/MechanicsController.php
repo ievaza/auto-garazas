@@ -80,6 +80,9 @@ class MechanicsController extends AbstractController
         getRepository(Mechanics::class)->
         find($id);
 
+        if ($mech->getTrucks()->count() > 0){
+            return new Response ("Istrinti negalima, nes turi uzsakymu");
+        }
 
         $enitytManager = $this->getDoctrine()->getManager();
         $enitytManager->remove($mech);

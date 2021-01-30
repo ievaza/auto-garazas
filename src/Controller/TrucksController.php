@@ -39,13 +39,17 @@ class TrucksController extends AbstractController
     #[Route('/trucks/store', name: 'trucks_store', methods:['POST'])]
     public function store(Request $r): Response
     {
+        $mech = $this->getDoctrine()->
+        getRepository(Mechanics::class)->
+        find($r->request->get('truck_mechanic'));
+
         $trucks = new Trucks;
         $trucks->
         setMaker($r->request->get('truck_maker'))->
         setPlate($r->request->get('truck_plate'))->
         setMakeYear($r->request->get('truck_year'))->
         setMechanicNotices($r->request->get('truck_notice'))->
-        setMechanicId($r->request->get('truck_mechanic_id'));
+        setMechanic($mech);
 
         $enitytManager = $this->getDoctrine()->getManager();
         $enitytManager->persist($trucks);
@@ -75,13 +79,16 @@ class TrucksController extends AbstractController
         $truck = $this->getDoctrine()->
         getRepository(Trucks::class)->
         find($id);
+        $mech = $this->getDoctrine()->
+        getRepository(Mechanics::class)->
+        find($r->request->get('truck_mechanic'));
 
         $truck->
         setMaker($r->request->get('truck_maker'))->
         setPlate($r->request->get('truck_plate'))->
         setMakeYear($r->request->get('truck_year'))->
         setMechanicNotices($r->request->get('truck_notice'))->
-        setMechanicId($r->request->get('truck_mechanic_id'));
+        setMechanic($mech);
 
         $enitytManager = $this->getDoctrine()->getManager();
         $enitytManager->persist($truck);
@@ -95,6 +102,8 @@ class TrucksController extends AbstractController
         $truck = $this->getDoctrine()->
         getRepository(Trucks::class)->
         find($id);
+
+        
 
         $enitytManager = $this->getDoctrine()->getManager();
         $enitytManager->remove($truck);

@@ -9,13 +9,16 @@
 List:
     <ul>
     {% for mech in mechanics %}
-    <li>{{mech.name}} {{mech.surname}}
-    <a href="{{path('mechanics_edit',{id: mech.id}) }}"> EDIT </a>
-    <form action="{{path('mechanics_delete',{id: mech.id}) }}" method="POST">  
-    <button type="sumbit"> DELETE </button>
-    </form> 
-
-    </li>
+        <li>{{mech.name}} {{mech.surname}}
+        <a href="{{path('mechanics_edit',{id: mech.id}) }}"> EDIT </a>
+        <form action="{{path('mechanics_delete',{id: mech.id}) }}" method="POST">  
+        <button type="sumbit"> DELETE </button>
+        </form> 
+        
+        {% for truck in mech.trucks %}
+        {{truck.maker}} <br>
+        {% endfor %}
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}

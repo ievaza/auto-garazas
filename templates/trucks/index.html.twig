@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <h1>Trucks in Library</h1>
+    <h1>Trucks in List</h1>
 
 List:
     <ul>
     {% for truck in trucks %}
-    <li>{{truck.maker}} {{truck.plate}}
+    <li>{{truck.maker}} {{truck.plate}} {{truck.mechanic.name}} {{truck.mechanic.surname}} 
     <a href="{{path('trucks_edit',{id: truck.id}) }}"> EDIT </a>
     <form action="{{path('trucks_delete',{id: truck.id}) }}" method="POST">  
     <button type="sumbit"> DELETE </button>
